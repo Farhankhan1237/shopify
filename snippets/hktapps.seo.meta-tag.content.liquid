@@ -1,0 +1,74 @@
+{% if request.page_type == 'product' %}
+
+{%- capture product_metafield_meta_title -%}{{ product.metafields.global['title_tag'] }}{%- endcapture -%}
+{%- capture product_app_meta_title -%}{%- endcapture -%}
+{% if product_metafield_meta_title != '' %}
+{%- assign hktapps_seo_meta_title = product_metafield_meta_title -%}
+{% else %}
+{%- assign hktapps_seo_meta_title = product_app_meta_title -%}
+{% endif %}
+
+{%- capture product_metafield_meta_description -%}{{ product.metafields.global['description_tag'] }}{%- endcapture -%}
+{%- capture product_app_meta_description -%}{%- endcapture -%}
+{% if product_metafield_meta_description != '' %}
+{%- assign hktapps_seo_meta_description = product_metafield_meta_description -%}
+{% else %}
+{%- assign hktapps_seo_meta_description = product_app_meta_description -%}
+{% endif %}
+
+{% endif %}
+
+{% if request.page_type == 'collection' %}
+
+{%- capture collection_metafield_meta_title -%}{{ collection.metafields.global['title_tag'] }}{%- endcapture -%}
+{%- capture collection_app_meta_title -%}{%- endcapture -%}
+{% if collection_metafield_meta_title != '' %}
+{%- assign hktapps_seo_meta_title = collection_metafield_meta_title -%}
+{% else %}
+{%- assign hktapps_seo_meta_title = collection_app_meta_title -%}
+{% endif %}
+
+{%- capture collection_metafield_meta_description -%}{{ collection.metafields.global['description_tag'] }}{%- endcapture -%}
+{%- capture collection_app_meta_description -%}{%- endcapture -%}
+{% if collection_metafield_meta_description != '' %}
+{%- assign hktapps_seo_meta_description = collection_metafield_meta_description -%}
+{% else %}
+{%- assign hktapps_seo_meta_description = collection_app_meta_description -%}
+{% endif %}
+
+{% endif %}
+
+{% if request.page_type == 'article' %}
+
+{%- capture article_metafield_meta_title -%}{{ article.metafields.global['title_tag'] }}{%- endcapture -%}
+{%- capture article_app_meta_title -%}{%- endcapture -%}
+{% if article_metafield_meta_title != '' %}
+{%- assign hktapps_seo_meta_title = article_metafield_meta_title -%}
+{% else %}
+{%- assign hktapps_seo_meta_title = article_app_meta_title -%}
+{% endif %}
+
+{%- capture article_metafield_meta_description -%}{{ article.metafields.global['description_tag'] }}{%- endcapture -%}
+{%- capture article_app_meta_description -%}{%- endcapture -%}
+{% if article_metafield_meta_description != '' %}
+{%- assign hktapps_seo_meta_description = article_metafield_meta_description -%}
+{% else %}
+{%- assign hktapps_seo_meta_description = article_app_meta_description -%}
+{% endif %}
+
+{% endif %}
+
+{% if request.page_type == "product" || request.page_type == "collection" || request.page_type == "article" %}
+
+{% if hktapps_seo_meta_title != '' %}
+{%- assign seo_title = hktapps_seo_meta_title | strip_html | strip -%}
+{%- assign page_title = seo_title -%}
+{%- assign og_title = seo_title -%}
+{% endif %}
+
+{% if hktapps_seo_meta_description != '' %}
+{%- assign page_description = hktapps_seo_meta_description | strip_html | strip -%}
+{%- assign og_description = page_description -%}
+{% endif %}
+
+{% endif %}

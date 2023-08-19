@@ -1,0 +1,25 @@
+<script>
+    function hktappsListenClickLink() {
+        let links = document.links;
+        for (let i = 0; i < links.length; i++) {
+            let a = links[i];
+            a.addEventListener('click', function () {
+                try {
+                    let payload = {
+                        shop: Shopify.shop,
+                        customer_id: HKTSeoApps.customerId,
+                        customer_email: HKTSeoApps.customerEmail,
+                        to_url: a.href,
+                        from_url: location.href,
+                        rel: a.rel,
+                        target: a.target,
+                    }
+                    hktappsMakeRequest("https://seo.hktapps.com/api/storefront/track-link-click.json", 'POST', payload);
+                } catch (e) {
+
+                }
+            });
+        }
+    }
+    hktappsDocReady(function() {hktappsListenClickLink();});
+</script>

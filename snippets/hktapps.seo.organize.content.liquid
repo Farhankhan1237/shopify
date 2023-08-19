@@ -1,0 +1,63 @@
+{%- assign sameLinks = '' -%}
+
+{%- if settings.social_twitter_link -%}
+    {%- assign sameLinks = sameLinks | append: ':::' -%}
+    {%- assign sameLinks = sameLinks | append: settings.social_twitter_link -%}
+{%- endif -%}
+
+{%- if settings.social_facebook_link -%}
+    {%- assign sameLinks = sameLinks | append: ':::' -%}
+    {%- assign sameLinks = sameLinks | append: settings.social_facebook_link -%}
+{%- endif -%}
+
+{%- if settings.social_pinterest_link -%}
+    {%- assign sameLinks = sameLinks | append: ':::' -%}
+    {%- assign sameLinks = sameLinks | append: settings.social_pinterest_link -%}
+{%- endif -%}
+
+{%- if settings.social_instagram_link -%}
+    {%- assign sameLinks = sameLinks | append: ':::' -%}
+    {%- assign sameLinks = sameLinks | append: settings.social_instagram_link -%}
+{%- endif -%}
+
+{%- if settings.social_tumblr_link -%}
+    {%- assign sameLinks = sameLinks | append: ':::' -%}
+    {%- assign sameLinks = sameLinks | append: settings.social_tumblr_link -%}
+{%- endif -%}
+
+{%- if settings.social_snapchat_link -%}
+    {%- assign sameLinks = sameLinks | append: ':::' -%}
+    {%- assign sameLinks = sameLinks | append: settings.social_snapchat_link -%}
+{%- endif -%}
+
+{%- if settings.social_youtube_link -%}
+    {%- assign sameLinks = sameLinks | append: ':::' -%}
+    {%- assign sameLinks = sameLinks | append: settings.social_youtube_link -%}
+{%- endif -%}
+
+{%- if settings.social_vimeo_link -%}
+    {%- assign sameLinks = sameLinks | append: ':::' -%}
+    {%- assign sameLinks = sameLinks | append: settings.social_vimeo_link -%}
+{%- endif -%}
+
+{%- assign sameLinks = sameLinks | split: ':::' -%}
+
+{%- if request.page_type == 'index' -%}
+<!-- Added by HKTApps  -->
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ shop.name | json }},
+  "url": {{ shop.url | append: page.url | json }},
+    "logo": "https://seo.hktapps.com/storage/organization/e41470-3.png",
+    "sameAs": [
+    {% for sameLink in sameLinks -%}
+    {% if sameLink != '' -%}
+    {{ sameLink | json }}{%- if forloop.last == false -%},{% endif -%}
+    {%- endif -%}
+    {% endfor %}
+  ]
+}
+</script>
+<!-- Added by HKTApps -->
+{%- endif -%}
